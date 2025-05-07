@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kamera Aç</title>
+</head>
+<body>
+  <h1>Ön Kamera Açılıyor...</h1>
+  <video id="video" width="300" height="400" autoplay playsinline></video>
+
+  <script>
+    async function openFrontCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "user" },
+          audio: false
+        });
+        document.getElementById('video').srcObject = stream;
+      } catch (err) {
+        alert("Kamera izni verilmeli: " + err.message);
+      }
+    }
+
+    openFrontCamera();
+  </script>
+</body>
+</html>
